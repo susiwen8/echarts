@@ -115,11 +115,6 @@ class VisualMapView extends ComponentView {
         const forceState = opts.forceState;
         const visualMapModel = this.visualMapModel;
         const visualObj: {[key in typeof visualCluster]?: VisualOptionUnit[key]} = {};
-
-        // Default values.
-        if (visualCluster === 'symbol') {
-            visualObj.symbol = (visualMapModel as PiecewiseModel).get('itemSymbol');
-        }
         if (visualCluster === 'color') {
             const defaultColor = visualMapModel.get('contentColor');
             visualObj.color = defaultColor as ColorString;
@@ -138,6 +133,7 @@ class VisualMapView extends ComponentView {
         ];
         const visualTypes = VisualMapping.prepareVisualTypes(mappings);
 
+        // Default values.
         zrUtil.each(visualTypes, function (type) {
             let visualMapping = mappings[type];
             if (opts.convertOpacityToAlpha && type === 'opacity') {
@@ -150,6 +146,10 @@ class VisualMapView extends ComponentView {
                 );
             }
         });
+
+        if (visualCluster === 'symbol') {
+            visualObj.symbol = (visualMapModel as PiecewiseModel).get('itemSymbol');
+        }
 
         return visualObj[visualCluster];
     }
