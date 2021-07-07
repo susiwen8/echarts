@@ -40,6 +40,10 @@ class RadiusAxis extends Axis {
     pointToData(point: number[], clamp?: boolean) {
         return this.polar.pointToData(point, clamp)[this.dim === 'radius' ? 0 : 1];
     }
+
+    isHorizontal() {
+        return true;
+    }
 }
 
 RadiusAxis.prototype.dataToRadius = Axis.prototype.dataToCoord;

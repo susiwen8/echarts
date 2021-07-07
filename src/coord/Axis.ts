@@ -73,6 +73,10 @@ class Axis {
         this._extent = extent || [0, 0];
     }
 
+    isHorizontal(): boolean {
+        return;
+    }
+
     /**
      * If axis extent contain given coord
      */

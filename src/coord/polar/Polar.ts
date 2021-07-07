@@ -145,6 +145,25 @@ class Polar implements CoordinateSystem, CoordinateSystemMaster {
         ]);
     }
 
+    clampData(data: ScaleDataValue[], out?: number[]) {
+        const angleScale = this._angleAxis.scale;
+        const radiusScale = this._radiusAxis.scale;
+        const angleExtent =  angleScale.getExtent();
+        const radiusExtent = radiusScale.getExtent();
+        const angle = angleScale.parse(data[0]);
+        const radius = radiusScale.parse(data[1]);
+        out = out || [];
+        out[0] = Math.min(
+            Math.max(Math.min(angleExtent[0], angleExtent[1]), angle),
+            Math.max(angleExtent[0], angleExtent[1])
+        );
+        out[1] = Math.min(
+            Math.max(Math.min(radiusExtent[0], radiusExtent[1]), radius),
+            Math.max(radiusExtent[0], radiusExtent[1])
+        );
+        return out;
+    }
+
     /**
      * Convert a (x, y) point to data
      */

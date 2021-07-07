@@ -48,6 +48,10 @@ class AngleAxis extends Axis {
         return this.polar.pointToData(point, clamp)[this.dim === 'radius' ? 0 : 1];
     }
 
+    isHorizontal() {
+        return false;
+    }
+
     /**
      * Only be called in category axis.
      * Angle axis uses text height to decide interval

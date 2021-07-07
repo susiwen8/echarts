@@ -90,7 +90,7 @@ class BaseBarSeriesModel<Opts extends BaseBarSeriesOption<unknown> = BaseBarSeri
             const data = this.getData();
             const offset = data.getLayout('offset');
             const size = data.getLayout('size');
-            const offsetIndex = (coordSys as Cartesian2D).getBaseAxis().isHorizontal() ? 0 : 1;
+            const offsetIndex = coordSys.getBaseAxis().isHorizontal() ? 0 : 1;
             pt[offsetIndex] += offset + size / 2;
             return pt;
         }

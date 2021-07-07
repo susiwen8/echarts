@@ -985,6 +985,7 @@ function updateStyle(
     if (isPolar) {
         let position = seriesModel.get(['label', 'position']);
         setSectorTextRotation(
+            // @ts-ignore
             el as Sector,
             position === 'outside' ? labelPositionOutside : position,
             createPolarPositionMapping(isHorizontalOrRadial),
