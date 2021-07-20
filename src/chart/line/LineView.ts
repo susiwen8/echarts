@@ -558,6 +558,12 @@ class LineView extends ChartView {
 
     render(seriesModel: LineSeriesModel, ecModel: GlobalModel, api: ExtensionAPI) {
         const coordSys = seriesModel.coordinateSystem;
+        const baseAxis = coordSys.getBaseAxis();
+        const valueAxis = coordSys.getOtherAxis(baseAxis as any);
+
+        if (valueAxis.scale.isBlank()) {
+            return;
+        }
         const group = this.group;
         const data = seriesModel.getData();
         const lineStyleModel = seriesModel.getModel('lineStyle');
