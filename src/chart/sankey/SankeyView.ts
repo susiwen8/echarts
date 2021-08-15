@@ -207,7 +207,7 @@ class SankeyView extends ChartView {
                     const sourceColor = edge.node1.getVisual('color');
                     const targetColor = edge.node2.getVisual('color');
                     if (typeof sourceColor === 'string' && typeof targetColor === 'string') {
-                        curve.style.fill = new graphic.LinearGradient(0, 0, 1, 0, [{
+                        curve.style.fill = new graphic.LinearGradient(0, 0, +(orient === 'horizontal'), +(orient === 'vertical'), [{
                             color: sourceColor,
                             offset: 0
                         }, {
@@ -250,7 +250,8 @@ class SankeyView extends ChartView {
                     width: layout.dx,
                     height: layout.dy
                 },
-                style: itemModel.getModel('itemStyle').getItemStyle()
+                style: itemModel.getModel('itemStyle').getItemStyle(),
+                z2: 10
             });
 
             setLabelStyle(
