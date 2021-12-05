@@ -79,7 +79,7 @@ export interface EffectScatterSeriesOption
     /**
      * When to show the effect
      */
-    showEffectOn?: 'render' | 'emphasis'
+    showEffectOn?: 'render' | 'emphasis' | 'select'
     clip?: boolean
 
     /**

@@ -27,7 +27,7 @@ import type Displayable from 'zrender/src/graphic/Displayable';
 import { SymbolDrawItemModelOption } from './SymbolDraw';
 
 interface RippleEffectCfg {
-    showEffectOn?: 'emphasis' | 'render'
+    showEffectOn?: 'emphasis' | 'render' | 'select'
     rippleScale?: number
     brushType?: 'fill' | 'stroke'
     period?: number
@@ -211,6 +211,17 @@ class EffectSymbol extends Group {
                 : this.startEffectAnimation(effectCfg);
 
             this._effectCfg = effectCfg;
+        }
+        else if (effectCfg.showEffectOn === 'select') {
+            // Not keep old effect config
+            this._effectCfg = null;
+    
+            this.stopEffectAnimation();
+            
+            (this as ECElement).onclick = () => {
+                this.stopEffectAnimation();
+                this.startEffectAnimation(effectCfg);
+            };
         }
         else {
             // Not keep old effect config
