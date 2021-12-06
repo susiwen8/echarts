@@ -140,9 +140,11 @@ function singleLeaveBlur(el: ECElement) {
 }
 
 function singleEnterSelect(el: ECElement) {
+    el.onSelectStateChange && el.onSelectStateChange('select');
     el.selected = true;
 }
 function singleLeaveSelect(el: ECElement) {
+    el.onSelectStateChange && el.onSelectStateChange('normal');
     el.selected = false;
 }
 

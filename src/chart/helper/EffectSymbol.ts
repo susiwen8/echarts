@@ -218,9 +218,14 @@ class EffectSymbol extends Group {
     
             this.stopEffectAnimation();
             
-            (this as ECElement).onclick = () => {
-                this.stopEffectAnimation();
-                this.startEffectAnimation(effectCfg);
+            (this as ECElement).onSelectStateChange = (toState) => {
+                if (toState === 'normal') {
+                    this.stopEffectAnimation();
+                }
+
+                if (toState === 'select') {
+                    this.startEffectAnimation(effectCfg);
+                }
             };
         }
         else {
