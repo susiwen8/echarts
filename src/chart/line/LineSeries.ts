@@ -42,6 +42,7 @@ import type Polar from '../../coord/polar/Polar';
 import {createSymbol, ECSymbol} from '../../util/symbol';
 import {Group} from '../../util/graphic';
 import {LegendIconParams} from '../../component/legend/LegendModel';
+import { SymbolDrawItemModelOption } from '../helper/SymbolDraw';
 
 type LineDataValue = OptionDataValue | OptionDataValue[];
 
@@ -120,6 +121,8 @@ export interface LineSeriesOption extends SeriesOption<LineStateOption<CallbackD
     data?: (LineDataValue | LineDataItemOption)[]
 
     triggerLineEvent?: boolean
+
+    rippleEffect: SymbolDrawItemModelOption['rippleEffect']
 }
 
 class LineSeriesModel extends SeriesModel<LineSeriesOption> {
@@ -217,6 +220,15 @@ class LineSeriesModel extends SeriesModel<LineSeriesOption> {
         },
 
         triggerLineEvent: false,
+        rippleEffect: {
+            period: 4,
+            // Scale of ripple
+            scale: 2.5,
+            // Brush type can be fill or stroke
+            brushType: 'fill',
+            // Ripple number
+            number: 3
+        },
     };
 
     getLegendIcon(opt: LegendIconParams): ECSymbol | Group {

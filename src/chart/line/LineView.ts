@@ -58,6 +58,7 @@ import { createFloat32Array } from '../../util/vendor';
 import { convertToColorString } from '../../util/format';
 import { lerp } from 'zrender/src/tool/color';
 import Element from 'zrender/src/Element';
+import EffectSymbol from '../helper/EffectSymbol';
 
 
 type PolarArea = ReturnType<Polar['getArea']>;
@@ -609,7 +610,7 @@ class LineView extends ChartView {
     init() {
         const lineGroup = new graphic.Group();
 
-        const symbolDraw = new SymbolDraw();
+        const symbolDraw = new SymbolDraw(EffectSymbol);
         this.group.add(symbolDraw.group);
 
         this._symbolDraw = symbolDraw;

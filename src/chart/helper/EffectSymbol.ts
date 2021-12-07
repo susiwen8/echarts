@@ -17,7 +17,7 @@
 * under the License.
 */
 
-import {createSymbol, normalizeSymbolOffset, normalizeSymbolSize} from '../../util/symbol';
+import {createSymbol, ECSymbol, normalizeSymbolOffset, normalizeSymbolSize} from '../../util/symbol';
 import {Group, Path} from '../../util/graphic';
 import { enterEmphasis, leaveEmphasis, enableHoverEmphasis } from '../../util/states';
 import SymbolClz from './Symbol';
@@ -137,6 +137,19 @@ class EffectSymbol extends Group {
         }
 
         updateRipplePath(rippleGroup, effectCfg);
+    }
+
+    /**
+     * FIXME:
+     * Caution: This method breaks the encapsulation of this module,
+     * but it indeed brings convenience. So do not use the method
+     * unless you detailedly know all the implements of `Symbol`,
+     * especially animation.
+     *
+     * Get symbol path element.
+     */
+    getSymbolPath() {
+        return this.childAt(0) as ECSymbol;
     }
 
     /**
